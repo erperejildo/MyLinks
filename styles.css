@@ -233,12 +233,19 @@ h1 {
 }
 
 .link-url {
+  display: block;
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: var(--space-1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-url:hover {
+  color: var(--color-accent-blue);
 }
 
 .link-actions {
