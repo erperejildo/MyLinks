@@ -36,4 +36,7 @@ npm run watch    # auto-recompile on changes
 
 ## License
 
-Axis Labs
+Copyright (c) 2026 [Axis Labs](https://axislabs.eu)
+
+Released under the MIT License — free to use as long as you don't profit from it.
+See [LICENSE](LICENSE) for details.
