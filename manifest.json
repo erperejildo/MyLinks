@@ -1,0 +1,20 @@
+{
+    "name": "My Links",
+    "version": "1.1.0",
+    "description": "Save and copy-paste links for job applications.",
+    "manifest_version": 3,
+    "author": "Axis Labs",
+    "action": {
+        "default_title": "My Links"
+    },
+    "icons": {
+        "256": "images/icon256.png"
+    },
+    "permissions": ["storage", "sidePanel"],
+    "side_panel": {
+        "default_path": "index.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}
