@@ -116,7 +116,7 @@ Links are stored as an array of objects in `chrome.storage.local` under the key 
 ### Making Changes
 
 - Edit `popup.js` for behavior changes
-- Edit `src/styles.scss` for visual changes (then run `npm run build:css`)
+- Edit `src/styles.scss` for visual changes (then run `npm run build`)
 - Edit `index.html` for structural changes
 - Reload the extension in `chrome://extensions` after changes (click the refresh icon on the extension card)
 
@@ -125,8 +125,8 @@ Links are stored as an array of objects in `chrome.storage.local` under the key 
 Styles are authored in SCSS and compiled to CSS:
 
 ```bash
-npm run build:css    # compile once
-npm run watch:css    # auto-recompile on file changes
+npm run build    # compile once
+npm run watch    # auto-recompile on file changes
 ```
 
 After editing `src/styles.scss`, run the build command or use watch mode. The compiled `styles.css` is what Chrome loads.
