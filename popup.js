@@ -9,6 +9,7 @@ const reorderBtn = document.getElementById('reorder-btn');
 const addBtn = document.getElementById('add-btn');
 const headerCancelBtn = document.getElementById('header-cancel-btn');
 const addForm = document.getElementById('add-form');
+const copyAllBtn = document.getElementById('copy-all-btn');
 
 let links = [];
 let isReorderMode = false;
@@ -35,6 +36,7 @@ function renderLinks() {
     linksList.innerHTML = '';
     emptyState.classList.toggle('hidden', links.length > 0);
     reorderBtn.classList.toggle('hidden', links.length === 0);
+    copyAllBtn.classList.toggle('hidden', links.length === 0 || isReorderMode);
 
     links.forEach((link, index) => {
         const li = document.createElement('li');
@@ -245,6 +247,11 @@ addBtn.addEventListener('click', () => {
 headerCancelBtn.addEventListener('click', resetForm);
 
 reorderBtn.addEventListener('click', toggleReorderMode);
+
+copyAllBtn.addEventListener('click', () => {
+    const text = links.map((link) => `${link.title}: ${link.url}`).join('\n');
+    copyToClipboard(text);
+});
 
 linksList.addEventListener('click', (e) => {
     if (isReorderMode) return;
