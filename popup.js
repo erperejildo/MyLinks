@@ -2,7 +2,6 @@ const titleInput = document.getElementById('link-title');
 const urlInput = document.getElementById('link-url');
 const editIdInput = document.getElementById('edit-id');
 const saveBtn = document.getElementById('save-btn');
-const cancelBtn = document.getElementById('cancel-btn');
 const linksList = document.getElementById('links-list');
 const emptyState = document.getElementById('empty-state');
 const reorderBtn = document.getElementById('reorder-btn');
@@ -67,7 +66,7 @@ function renderLinks() {
         li.innerHTML = `
             <div class="link-info">
                 <div class="link-title">${escapeHtml(link.title)}</div>
-                <div class="link-url">${escapeHtml(link.url)}</div>
+                <a class="link-url" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.url)}</a>
             </div>
             ${dragHandle}
             ${actionsHtml}
@@ -91,7 +90,6 @@ function resetForm() {
     urlInput.value = '';
     editIdInput.value = '';
     saveBtn.textContent = 'Save';
-    cancelBtn.classList.add('hidden');
     addForm.classList.add('hidden');
     addBtn.classList.remove('hidden');
     headerCancelBtn.classList.add('hidden');
@@ -237,7 +235,7 @@ saveBtn.addEventListener('click', () => {
     showToast(editId ? 'Link updated' : 'Link saved');
 });
 
-cancelBtn.addEventListener('click', resetForm);
+
 
 addBtn.addEventListener('click', () => {
     resetForm();
@@ -255,6 +253,12 @@ copyAllBtn.addEventListener('click', () => {
 
 linksList.addEventListener('click', (e) => {
     if (isReorderMode) return;
+
+    const urlLink = e.target.closest('.link-url');
+    if (urlLink) {
+        e.stopPropagation();
+        return;
+    }
 
     const btn = e.target.closest('.icon-btn');
     if (!btn) return;
@@ -277,7 +281,6 @@ linksList.addEventListener('click', (e) => {
             urlInput.value = link.url;
             editIdInput.value = link.id;
             saveBtn.textContent = 'Update';
-            cancelBtn.classList.remove('hidden');
             showForm();
         }
     }
