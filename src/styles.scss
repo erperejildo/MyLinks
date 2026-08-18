@@ -93,6 +93,10 @@ h2 {
     opacity: 0.85;
 }
 
+.hidden {
+    display: none;
+}
+
 .btn-primary {
     background: #4a90d9;
     color: #fff;
@@ -109,9 +113,33 @@ h2 {
     font-size: 11px;
 }
 
-.btn-accent {
+.btn-reorder {
+    background: #5f6368;
+    color: #fff;
+}
+
+.btn-active {
     background: #34a853;
     color: #fff;
+}
+
+.btn-add {
+    background: #34a853;
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 13px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-cancel {
+    background: #e0e0e0;
+    color: #555;
+    padding: 6px 14px;
+    font-size: 13px;
 }
 
 .btn-danger {
@@ -218,6 +246,41 @@ h2 {
 .icon-btn.delete-btn:hover {
     background: #fce8e6;
     color: #d93025;
+}
+
+.link-item.reorder-mode {
+    cursor: default;
+}
+
+.link-item.dragging {
+    opacity: 0.4;
+}
+
+.link-item.drag-over {
+    border-color: #4a90d9;
+    box-shadow: 0 0 0 2px rgba(74, 144, 217, 0.25);
+}
+
+.drag-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #aaa;
+    cursor: grab;
+    flex-shrink: 0;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+}
+
+.drag-handle:hover {
+    color: #555;
+    background: #f0f0f0;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
 }
 
 .empty-state {
