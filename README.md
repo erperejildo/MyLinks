@@ -23,8 +23,8 @@ A Chrome browser extension for job seekers to save, organize, and quickly copy-p
 Edit files, then reload the extension in `chrome://extensions`.
 
 ```bash
-npm run build:css    # compile SCSS to CSS
-npm run watch:css    # auto-recompile on changes
+npm run build    # compile SCSS to CSS
+npm run watch    # auto-recompile on changes
 ```
 
 ## Tech Stack
