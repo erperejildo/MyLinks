@@ -2,7 +2,7 @@
 
 ## Overview
 
-**My Links** is a Chrome browser extension (Manifest V3) designed for job seekers to save, organize, and quickly copy-paste links needed during job applications. It provides a lightweight popup UI where users can add links with descriptive titles, edit or delete them, and copy individual URLs or all saved URLs at once for easy pasting into application forms.
+**My Links** is a Chrome browser extension (Manifest V3) designed for job seekers to save, organize, and quickly copy-paste links needed during job applications. It provides a lightweight popup UI where users can add links with descriptive titles, edit or delete them, copy individual URLs, and reorder links via drag-and-drop for easy pasting into application forms.
 
 **Author:** Axis Labs
 
@@ -57,7 +57,7 @@ Links are stored as an array of objects in `chrome.storage.local` under the key 
 2. **Editing a link:** User clicks the "edit" button on a saved link item. The form populates with that link's data, the Save button changes to "Update", and a Cancel button appears. Saving updates the existing record.
 3. **Deleting a link:** User clicks the "del" button. The link is removed from the array and storage.
 4. **Copying a link:** User clicks the "copy" button. The URL is written to the clipboard. The button briefly shows "done" as visual feedback.
-5. **Copy All:** When at least one link exists, a "Copy All" button appears in the section header. Clicking it copies all URLs joined by newlines.
+5. **Reordering links:** User clicks "Reorder" in the section header. Each link item shows a drag handle on the right side. User can drag items to reorder them. Changes are visual only until "Done" (checkmark icon) is clicked, which persists the new order. Click "Done" to exit reorder mode and save.
 
 ### Key Files
 
@@ -70,14 +70,16 @@ Links are stored as an array of objects in `chrome.storage.local` under the key 
 #### `index.html`
 - Single-page popup with two sections:
   - **Form section** — Title input, URL input, Save button, Cancel button (hidden by default), hidden `edit-id` field for tracking edit state
-  - **Links section** — Header with "Copy All" button, `<ul>` list for rendered link items, empty state message
+  - **Links section** — Header with "Reorder" button, `<ul>` list for rendered link items, empty state message
 
 #### `src/styles.scss`
 - SCSS source file — edit this for all styling changes
 - Fixed popup dimensions: `width: 380px`, `max-height: 520px`, `overflow-y: auto`
 - Card-based layout for form and link items with `border-radius: 8px` and subtle borders
-- Action buttons use text labels ("copy", "edit", "del") instead of icons to avoid icon library dependencies
+- Action buttons use SVG icons for copy, edit, delete, and drag handles
 - Hover states with color-coded backgrounds: green for copy, blue for edit, red for delete
+- `.hidden` class for visibility toggling (no inline styles)
+- `.btn-icon` class for icon-only button mode (used by Done button in reorder mode)
 - Toast notifications via a `.toast` class with CSS opacity transitions
 - Form inputs use system fonts with blue focus ring
 
@@ -87,13 +89,17 @@ Links are stored as an array of objects in `chrome.storage.local` under the key 
 #### `popup.js`
 - **`loadLinks()`** — Reads `links` from `chrome.storage.local`, falls back to empty array
 - **`saveLinks()`** — Writes current `links` array to `chrome.storage.local`
-- **`renderLinks()`** — Clears and rebuilds the `<ul>` list from the `links` array, toggles empty state and Copy All button visibility
+- **`renderLinks()`** — Clears and rebuilds the `<ul>` list from the `links` array, toggles empty state and Reorder button visibility, adds drag handles in reorder mode
+- **`toggleReorderMode()`** — Toggles between normal and reorder views, stores original order on enter, saves to storage on exit (Done click), updates button between text "Reorder" and checkmark icon
+- **`attachDragListeners()`** — Attaches drag-and-drop event listeners to each link item when in reorder mode
+- **Drag-and-drop handlers** — `handleDragStart`, `handleDragEnd`, `handleDragOver`, `handleDragEnter`, `handleDragLeave`, `handleDrop` manage the reorder flow and update the array order on drop (visual only, saved on Done click)
 - **`generateId()`** — Creates unique IDs using timestamp + random alphanumeric string
 - **`escapeHtml()`** — Prevents XSS by using `textContent`/`innerHTML` swap
 - **`resetForm()`** — Clears inputs, resets edit state, re-focuses title input
 - **`showToast()`** — Creates/reuses a toast element, shows it for 1.5 seconds
 - **`copyToClipboard()`** — Uses Clipboard API with fallback to `execCommand`
-- Event delegation on `#links-list` for copy/edit/delete button clicks
+- Event delegation on `#links-list` for copy/edit/delete button clicks (disabled during reorder mode)
+- Reorder button toggles reorder mode on/off
 - Form submit handled via Save button click listener with validation (both fields required)
 
 ## Storage Details
@@ -142,7 +148,6 @@ After editing `src/styles.scss`, run the build command or use watch mode. The co
 
 ## Future Considerations
 
-- Drag-and-drop reordering of links
 - Categories or tags for organizing links by company/role
 - Import/export links as JSON or CSV
 - Keyboard shortcuts for power users

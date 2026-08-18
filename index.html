@@ -12,9 +12,13 @@
     <div class="container">
         <header>
             <h1>My Links</h1>
+            <div class="header-actions">
+                <button id="add-btn" class="btn btn-add">Add</button>
+                <button id="header-cancel-btn" class="btn btn-cancel hidden">Cancel</button>
+            </div>
         </header>
 
-        <div id="add-form" class="form-section">
+        <div id="add-form" class="form-section hidden">
             <input type="hidden" id="edit-id" value="">
             <div class="form-group">
                 <label for="link-title">Title</label>
@@ -26,17 +30,17 @@
             </div>
             <div class="form-actions">
                 <button id="save-btn" class="btn btn-primary">Save</button>
-                <button id="cancel-btn" class="btn btn-secondary" style="display:none;">Cancel</button>
+                <button id="cancel-btn" class="btn btn-secondary hidden">Cancel</button>
             </div>
         </div>
 
         <div id="links-section">
             <div class="section-header">
                 <h2>Saved Links</h2>
-                <button id="copy-all-btn" class="btn btn-small btn-accent" style="display:none;">Copy All</button>
+                <button id="reorder-btn" class="btn btn-small btn-reorder hidden">Reorder</button>
             </div>
             <ul id="links-list"></ul>
-            <p id="empty-state" class="empty-state">No links saved yet. Add one above!</p>
+            <p id="empty-state" class="empty-state">No links saved yet. Click Add!</p>
         </div>
     </div>
 
