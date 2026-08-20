@@ -1,3 +1,5 @@
+const { escapeHtml, generateId } = require('./src/utils');
+
 const titleInput = document.getElementById('link-title');
 const urlInput = document.getElementById('link-url');
 const editIdInput = document.getElementById('edit-id');
@@ -15,10 +17,6 @@ let isReorderMode = false;
 let draggedItem = null;
 let draggedIndex = -1;
 let linksBeforeReorder = [];
-
-function generateId() {
-    return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
-}
 
 function loadLinks() {
     chrome.storage.local.get(['links'], (result) => {
@@ -77,12 +75,6 @@ function renderLinks() {
     if (isReorderMode) {
         attachDragListeners();
     }
-}
-
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
 }
 
 function resetForm() {
