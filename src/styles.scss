@@ -43,28 +43,28 @@ h1 {
 
 .form-group {
     margin-bottom: var(--space-5);
-}
 
-.form-group label {
-    display: block;
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-2);
-}
+    label {
+        display: block;
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-2);
+    }
 
-.form-group input {
-    width: 100%;
-    padding: var(--space-4) var(--space-5);
-    font-size: var(--font-size-base);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-md);
-    outline: none;
-    transition: border-color var(--transition-fast);
-}
+    input {
+        width: 100%;
+        padding: var(--space-4) var(--space-5);
+        font-size: var(--font-size-base);
+        border: 1px solid var(--color-border-light);
+        border-radius: var(--radius-md);
+        outline: none;
+        transition: border-color var(--transition-fast);
 
-.form-group input:focus {
-    border-color: var(--color-border-focus);
+        &:focus {
+            border-color: var(--color-border-focus);
+        }
+    }
 }
 
 .form-actions {
@@ -81,46 +81,74 @@ h1 {
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: background var(--transition-fast), opacity var(--transition-fast);
+
+    &:hover {
+        opacity: 0.85;
+    }
+
+    &-primary {
+        background: var(--color-accent-blue);
+        color: var(--color-bg-white);
+        flex: 1;
+    }
+
+    &-secondary {
+        background: var(--color-btn-secondary);
+        color: var(--color-btn-cancel);
+    }
+
+    &-small {
+        padding: var(--space-2) var(--space-6);
+        font-size: var(--font-size-xs);
+    }
+
+    &-reorder {
+        background: var(--color-accent-blue);
+        color: var(--color-bg-white);
+        margin-left: auto;
+    }
+
+    &-active {
+        background: var(--color-accent-green);
+        color: var(--color-bg-white);
+    }
+
+    &-add {
+        background: var(--color-accent-green);
+        color: var(--color-bg-white);
+    }
+
+    &-cancel {
+        background: var(--color-btn-secondary);
+        color: var(--color-btn-cancel);
+    }
+
+    &-danger {
+        background: transparent;
+        color: var(--color-accent-red);
+        padding: var(--space-2) var(--space-4);
+        font-size: var(--font-size-sm);
+
+        &:hover {
+            background: var(--color-hover-delete);
+        }
+    }
+
+    &-copy-all {
+        background: var(--color-accent-blue);
+        color: var(--color-bg-white);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-3);
+        margin-top: var(--space-5);
+        padding: var(--space-4) var(--space-8);
+    }
 }
 
-.btn:hover {
-    opacity: 0.85;
-}
-
-.hidden {
-    display: none;
-}
-
-.btn-primary {
-    background: var(--color-accent-blue);
-    color: var(--color-bg-white);
-    flex: 1;
-}
-
-.btn-secondary {
-    background: var(--color-btn-secondary);
-    color: var(--color-btn-cancel);
-}
-
-.btn-small {
-    padding: var(--space-2) var(--space-6);
-    font-size: var(--font-size-xs);
-}
-
-.btn-reorder {
-    background: var(--color-accent-blue);
-    color: var(--color-bg-white);
+#reorder-btn {
     margin-left: auto;
-}
-
-.btn-active {
-    background: var(--color-accent-green);
-    color: var(--color-bg-white);
-}
-
-.btn-add {
-    background: var(--color-accent-green);
-    color: var(--color-bg-white);
 }
 
 .header-actions {
@@ -128,20 +156,8 @@ h1 {
     gap: var(--space-3);
 }
 
-.btn-cancel {
-    background: var(--color-btn-secondary);
-    color: var(--color-btn-cancel);
-}
-
-.btn-danger {
-    background: transparent;
-    color: var(--color-accent-red);
-    padding: var(--space-2) var(--space-4);
-    font-size: var(--font-size-sm);
-}
-
-.btn-danger:hover {
-    background: var(--color-hover-delete);
+.hidden {
+    display: none;
 }
 
 .section-header {
@@ -165,10 +181,23 @@ h1 {
     padding: var(--space-5) var(--space-6);
     margin-bottom: var(--space-4);
     transition: box-shadow var(--transition-fast);
-}
 
-.link-item:hover {
-    box-shadow: 0 1px 4px var(--color-shadow-card);
+    &:hover {
+        box-shadow: 0 1px 4px var(--color-shadow-card);
+    }
+
+    &.reorder-mode {
+        cursor: default;
+    }
+
+    &.dragging {
+        opacity: 0.4;
+    }
+
+    &.drag-over {
+        border-color: var(--color-drag-over-border);
+        box-shadow: 0 0 0 2px var(--color-drag-over-shadow);
+    }
 }
 
 .link-info {
@@ -195,10 +224,10 @@ h1 {
     margin-top: var(--space-1);
     text-decoration: none;
     cursor: pointer;
-}
 
-.link-url:hover {
-    color: var(--color-accent-blue);
+    &:hover {
+        color: var(--color-accent-blue);
+    }
 }
 
 .link-actions {
@@ -220,43 +249,36 @@ h1 {
     cursor: pointer;
     color: var(--color-text-muted);
     transition: background var(--transition-fast), color var(--transition-fast);
-}
 
-.icon-btn:hover {
-    background: var(--color-bg-hover);
-    color: var(--color-text-primary);
-}
+    &:hover {
+        background: var(--color-bg-hover);
+        color: var(--color-text-primary);
+    }
 
-.icon-btn.copy-btn:hover {
-    background: var(--color-hover-copy);
-    color: var(--color-accent-green);
-}
+    &.copy-btn {
+        &:hover {
+            background: var(--color-hover-copy);
+            color: var(--color-accent-green);
+        }
 
-.icon-btn.copy-btn.copied {
-    color: var(--color-accent-green);
-}
+        &.copied {
+            color: var(--color-accent-green);
+        }
+    }
 
-.icon-btn.edit-btn:hover {
-    background: var(--color-hover-edit);
-    color: var(--color-accent-blue);
-}
+    &.edit-btn {
+        &:hover {
+            background: var(--color-hover-edit);
+            color: var(--color-accent-blue);
+        }
+    }
 
-.icon-btn.delete-btn:hover {
-    background: var(--color-hover-delete);
-    color: var(--color-accent-red);
-}
-
-.link-item.reorder-mode {
-    cursor: default;
-}
-
-.link-item.dragging {
-    opacity: 0.4;
-}
-
-.link-item.drag-over {
-    border-color: var(--color-drag-over-border);
-    box-shadow: 0 0 0 2px var(--color-drag-over-shadow);
+    &.delete-btn {
+        &:hover {
+            background: var(--color-hover-delete);
+            color: var(--color-accent-red);
+        }
+    }
 }
 
 .drag-handle {
@@ -270,15 +292,15 @@ h1 {
     flex-shrink: 0;
     border-radius: var(--radius-sm);
     transition: color var(--transition-fast), background var(--transition-fast);
-}
 
-.drag-handle:hover {
-    color: var(--color-btn-cancel);
-    background: var(--color-bg-hover);
-}
+    &:hover {
+        color: var(--color-btn-cancel);
+        background: var(--color-bg-hover);
+    }
 
-.drag-handle:active {
-    cursor: grabbing;
+    &:active {
+        cursor: grabbing;
+    }
 }
 
 .empty-state {
@@ -286,18 +308,6 @@ h1 {
     color: var(--color-text-placeholder);
     font-size: var(--font-size-base);
     padding: var(--space-12) 0;
-}
-
-.btn-copy-all {
-    background: var(--color-accent-blue);
-    color: var(--color-bg-white);
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-3);
-    margin-top: var(--space-5);
-    padding: var(--space-4) var(--space-8);
 }
 
 .toast {
@@ -314,8 +324,8 @@ h1 {
     transition: opacity var(--transition-normal);
     pointer-events: none;
     z-index: 100;
-}
 
-.toast.show {
-    opacity: 1;
+    &.show {
+        opacity: 1;
+    }
 }
