@@ -20,6 +20,10 @@ A Chrome browser extension for job seekers to save, organize, and quickly copy-p
 4. Select the `my_links/` directory
 5. Click the extension icon in the toolbar to open the popup
 
+## Screenshot
+
+<img width="371" height="561" alt="image" src="https://github.com/user-attachments/assets/04ebba73-f33e-4718-a67e-1aff2f659458" />
+
 ## Development
 
 Edit files, then reload the extension in `chrome://extensions`.
@@ -38,4 +42,7 @@ npm run watch    # auto-recompile on changes
 
 ## License
 
-Axis Labs
+Copyright (c) 2026 [Axis Labs](https://axislabs.eu)
+
+Released under the MIT License — free to use as long as you don't profit from it.
+See [LICENSE](LICENSE) for details.
