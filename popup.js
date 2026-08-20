@@ -1,4 +1,4 @@
-const { escapeHtml, generateId } = require('./src/utils');
+/* globals escapeHtml, generateId */
 
 const titleInput = document.getElementById('link-title');
 const urlInput = document.getElementById('link-url');
