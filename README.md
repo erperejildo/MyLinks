@@ -1,5 +1,7 @@
 # My Links
 
+[![codecov](https://codecov.io/gh/erperejildo/MyLinks/graph/badge.svg?token=05aa6d45-c385-405f-88b5-a277e5bcbe64)](https://codecov.io/gh/erperejildo/MyLinks)
+
 A Chrome browser extension for job seekers to save, organize, and quickly copy-paste links needed during job applications.
 
 ## Features
