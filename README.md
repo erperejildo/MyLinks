@@ -14,11 +14,13 @@ A Chrome browser extension for job seekers to save, organize, and quickly copy-p
 
 ## Installation
 
-1. Open `chrome://extensions` in Chrome
-2. Enable **Developer mode** (top right toggle)
-3. Click **Load unpacked**
-4. Select the `my_links/` directory
-5. Click the extension icon in the toolbar to open the popup
+1. Clone project
+2. Run `npm i` and `npm run build`
+3. Open `chrome://extensions` in Chrome
+4. Enable **Developer mode** (top right toggle)
+5. Click **Load unpacked**
+6. Select the `MyLinks/` directory
+7. Click the extension icon in the toolbar to open the popup
 
 ## Screenshot
 
